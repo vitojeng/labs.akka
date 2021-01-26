@@ -1,2 +1,11 @@
-*.class
-*.log
+.bsp/
+.idea/
+target/
+
+.settings
+.project
+.classpath
+*.iml
+
+.metals
+.bloop
