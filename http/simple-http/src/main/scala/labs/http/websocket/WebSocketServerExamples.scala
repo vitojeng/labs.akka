@@ -1,4 +1,6 @@
-package labs.http.docs
+package labs.http.websocket
+
+import labs.http.docs.SimpleBase
 
 /**
  *
@@ -14,10 +16,10 @@ object WebSocketCoreExample extends SimpleBase {
   import akka.actor.typed.ActorSystem
   import akka.actor.typed.scaladsl.Behaviors
   import akka.http.scaladsl.Http
-  import akka.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage}
-  import akka.http.scaladsl.model.{AttributeKeys, HttpRequest, HttpResponse, Uri}
+  import akka.http.scaladsl.model.ws.{Message, BinaryMessage, TextMessage}
+  import akka.http.scaladsl.model.{HttpRequest, HttpResponse, AttributeKeys, Uri}
   import akka.http.scaladsl.model.HttpMethods._
-  import akka.stream.scaladsl.{Flow, Sink, Source}
+  import akka.stream.scaladsl.{Sink, Source, Flow}
 
   import scala.io.StdIn
 
@@ -75,11 +77,10 @@ object WebSocketRoutingExample extends SimpleBase {
   import akka.http.scaladsl.Http
   import akka.http.scaladsl.model.ws.{Message, TextMessage}
   import akka.http.scaladsl.server.Directives._
-  import akka.stream.scaladsl.{Flow, Source}
+  import akka.stream.scaladsl.{Source, Flow}
   import akka.util.ByteString
 
   import scala.io.StdIn
-
   import java.util.concurrent.atomic.AtomicInteger
 
 
@@ -122,7 +123,6 @@ object WebSocketRoutingExample extends SimpleBase {
 object WebSocketPingServerExample extends SimpleBase {
   import akka.actor.typed.ActorSystem
   import akka.actor.typed.scaladsl.Behaviors
-
   import akka.http.scaladsl.Http
   import akka.http.scaladsl.settings.ServerSettings
   import akka.util.ByteString

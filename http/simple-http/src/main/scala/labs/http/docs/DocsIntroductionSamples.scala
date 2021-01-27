@@ -1,5 +1,6 @@
 package labs.http.docs
 
+import labs.http.SimpleBase
 
 
 /**

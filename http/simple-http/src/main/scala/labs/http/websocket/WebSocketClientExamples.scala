@@ -1,4 +1,4 @@
-package labs.http.docs
+package labs.http.websocket
 
 /**
  *
@@ -9,14 +9,13 @@ object WebSocketClientFlow {
   import akka.Done
   import akka.http.scaladsl.Http
   import akka.http.scaladsl.model.StatusCodes
-  import akka.http.scaladsl.model.ws.{Message, TextMessage, WebSocketRequest, WebSocketUpgradeResponse}
-
-  import akka.stream.scaladsl.{Keep, Sink, Source}
+  import akka.http.scaladsl.model.ws.{WebSocketUpgradeResponse, Message, WebSocketRequest, TextMessage}
+  import akka.stream.scaladsl.{Sink, Keep, Source}
   import akka.actor.typed.ActorSystem
   import akka.actor.typed.scaladsl.Behaviors
+
   import scala.concurrent.Future
-  import scala.util.Success
-  import scala.util.Failure
+  import scala.util.{Success, Failure}
 
   implicit val system = ActorSystem(Behaviors.empty, "websocket")
 
@@ -55,34 +54,5 @@ object WebSocketClientFlow {
         system.terminate()
       case Failure(ex) => throw ex
     }
-  }
-}
-
-
-object WebSocketPingServerExample extends SimpleBase {
-  import akka.actor.typed.ActorSystem
-  import akka.actor.typed.scaladsl.Behaviors
-
-  import akka.http.scaladsl.Http
-  import akka.http.scaladsl.settings.ServerSettings
-  import akka.util.ByteString
-
-  import java.util.concurrent.atomic.AtomicInteger
-
-  implicit val system = ActorSystem(Behaviors.empty, "websocket")
-
-  def main(args: Array[String]): Unit = {
-    val route = null
-
-    val defaultSettings = ServerSettings(system)
-    val pingCounter = new AtomicInteger()
-
-    Http().newServerAt(ALL_ADDRESSES, 8080)
-            .adaptSettings(_.mapWebsocketSettings(
-              _.withPeriodicKeepAliveData(()=>ByteString(s"debug-${pingCounter.incrementAndGet()}"))
-            ))
-            .bind(route)
-
-
   }
 }
