@@ -10,3 +10,4 @@ Some simple codes about [Akka](https://akka.io), use for examination.
 ## Akka Http
 
 * [simple-http](http/simple-http)
+* [websocket-chat](http/websocket-chat)
