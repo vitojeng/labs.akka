@@ -1,6 +1,6 @@
 package labs.http.websocket
 
-import labs.http.docs.SimpleBase
+import labs.http.SimpleBase
 
 /**
  *
